@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli Cake</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background-image: url('images/cake/background.png');
+        background-size: cover;
+        background-position: center;
+        overflow: hidden; /* Ẩn thanh cuộn */
+    }
+
+    .item {
+        position: absolute; /* Đặt vị trí tuyệt đối cho các item */
+        background-color: transparent; /* Màu nền của item */
+        display: flex; /* Để căn giữa nội dung */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        border-radius: 5px; /* Bo góc cho item */
+    }
+
+    .back-button {
+        position: fixed;
+        top: 10px; /* Khoảng cách từ trên xuống */
+        left: 10px; /* Khoảng cách từ trái sang */
+        font-size: 24px; /* Kích thước biểu tượng */
+        color: rgba(14, 1, 1, 0.8); /* Màu chữ nhạt */
+        text-decoration: none; /* Bỏ gạch chân */
+        transition: color 0.3s; /* Hiệu ứng chuyển đổi màu */
+    }
+
+    .back-button:hover {
+        color: rgba(255, 255, 255, 1); /* Màu chữ khi hover */
+    }
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1; /* Đầy đủ độ mờ */
+        }
+        50% {
+            opacity: 0.6; /* Không nhìn thấy */
+        }
+    }
+    @keyframes move {
+        0% {
+            transform: translateX(-50%) translateX(-1px); /* Bắt đầu ở bên trái */
+        }
+        50% {
+            transform: translateX(-50%) translateX(1px); /* Di chuyển sang bên phải */
+        }
+        100% {
+            transform: translateX(-50%) translateX(-1px); /* Quay lại bên trái */
+        }
+    }
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); /* Nền mờ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .modal-content {
+        background: #fbf7f7;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        width: 60%;
+        max-width: 400px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.3s ease-in-out;
+        position: relative;
+    }
+    /* Nội dung chữ */
+    .modal-content p {
+        font-size: 18px;
+        color: #f3aab5;
+        margin-bottom: 15px;
+        font-family: "LXGW WenKai Mono TC", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    /* Nút bấm */
+    .modal-content button {
+        background: #91cdf9;
+        color: #fbf7f7;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: "LXGW WenKai Mono TC", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .modal-content button:hover {
+        background: #f3aab5;
+    }
+
+
+/* Media query cho thiết bị di động */
+@media (max-width: 768px) {
+    .totoro {
+        width: 35%;
+        bottom: 20%;
+        right: 0%;
+    } 
+    .cat {
+        width: 30%;
+        bottom: 15%;
+        right: 20%;
+    }
+    .chihiro {
+        width: 45%;
+        bottom: 20%;
+        left: 5%;
+    }
+    .words {
+        width: 60%;
+        top: 0%;
+        left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
+        transform: translate(-50%, 0%); /* Căn giữa chính xác */
+    }
+    .kiki {
+        width: 30%;
+        top: 15%;
+        left: 4%;
+    }
+    .cake {
+        width: 40%;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Căn giữa chính xác */
+    }
+    .candlebody {
+        width: 12%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
+        position: absolute;
+        top: 37%; /* Đặt ở đáy của phần tử cha */
+        left: 50%;
+        transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+    }
+
+    .candlehead {
+        width: 6%; /* Chiều rộng của đầu nến, điều chỉnh theo kích thước thực tế */
+        position: absolute;
+        bottom: 63%; /* Đặt ngay trên candlebody */
+        left: 50%;
+        transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+        animation: blink 3s infinite, move 3s infinite; /* Áp dụng hiệu ứng nhấp nháy */
+    }
+}
+
+/* Media query cho laptop và thiết bị lớn hơn */
+@media (min-width: 769px) {
+    .totoro {
+        width: 18%;
+        bottom: 22%;
+        right: 0%;
+    }
+    .cat {
+        width: 15%;
+        bottom: 10%;
+        right: 12%;
+    }
+    .chihiro {
+        width: 20%;
+        bottom: 5%;
+        left: 5%;
+    }
+    .words {
+        width: 20%;
+        top: 0%;
+        left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
+        transform: translate(-50%, -11%); /* Căn giữa chính xác */
+    }
+    .kiki {
+        width: 15%;
+        top: 5%;
+        left: 15%;
+    }
+    .cake {
+        width: 18%;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Căn giữa chính xác */
+    }
+    .candle-container {
+        position: relative; /* Đặt vị trí tương đối cho phần tử cha */
+        width: 5%; /* Chiều rộng của thân nến */
+        height: 100px; /* Chiều cao của thân nến, điều chỉnh theo kích thước thực tế */
+        top: 50%; /* Khoảng cách từ trên xuống */
+        left: 50%; /* Đặt ở giữa theo chiều ngang */
+        transform: translate(-50%, -50%);
+        background-color: tomato;
+    }
+
+    .candlebody {
+        width: 5%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
+        position: absolute;
+        top: 45%; /* Đặt ở đáy của phần tử cha */
+        left: 50%;
+        transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+    }
+
+    .candlehead {
+        width: 3%; /* Chiều rộng của đầu nến, điều chỉnh theo kích thước thực tế */
+        position: absolute;
+        bottom: 55%; /* Đặt ngay trên candlebody */
+        left: 50%;
+        transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+        animation: blink 3s infinite, move 3s infinite; /* Áp dụng hiệu ứng nhấp nháy */
+    }
+}
+
+</style>
+<body>
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <p>Cho phép truy cập micro hoặc click vào nến để thổi tắt nến</p>
+            <button onclick="startListening()">Cho phép</button>
+        </div>
+    </div>
+    <div id="congratulations-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p>Chúc cho mọi điều ước của chị đều thành sự thật!</p>
+        </div>
+    </div>
+    <div class="container">
+        <img src="images/cake/totoro.png" class="item totoro" alt="item-totoro">
+        <img src="images/cake/cat.png" class="item cat" alt="item-cat">
+        <img src="images/cake/chihiro.png" class="item chihiro" alt="item-chihiro">
+        <img src="images/cake/hpbdwords.png" class="item words" alt="item-words">
+        <img src="images/cake/kiki.png" class="item kiki" alt="item-kiki">
+        <img src="images/cake/cake.png" class="item cake" alt="item-cake">
+        <img src="images/cake/candlebody.png" class="item candlebody" alt="item-candlebody">
+        <img src="images/cake/candlehead.png" class="item candlehead" alt="item-candlehead" id="candlehead">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-home"></i> <!-- Biểu tượng home -->
+        </a>
+    </div>
+    <script>
+        let candleBlown = false; 
+        function closeModal() {
+            document.getElementById("congratulations-modal").style.display = "none";
+        }
+        function blowOutCandle() {
+            candleBlown = true; // Set the candle as blown
+            const candleHead = document.querySelector('.candlehead');
+            candleHead.style.display = 'none'; // Hide the candle head
+            const modal = document.getElementById("congratulations-modal");
+            modal.style.display = 'flex';
+            // Add event listener to close modal if clicking outside
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal(); // Close the modal if clicked outside
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const candleHead = document.getElementById("candlehead");
+            candleHead.addEventListener("click", blowOutCandle);
+            candleHead.addEventListener("touchstart", blowOutCandle);
+        });
+        function startListening() {
+            document.getElementById("welcome-modal").style.display = "none";
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    document.getElementById("welcome-modal").style.display = "none";
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const analyser = audioContext.createAnalyser();
+                    const microphone = audioContext.createMediaStreamSource(stream);
+                    const scriptProcessor = audioContext.createScriptProcessor(2048, 1, 1);
+
+                    analyser.smoothingTimeConstant = 0.8;
+                    analyser.fftSize = 1024;
+
+                    microphone.connect(analyser);
+                    analyser.connect(scriptProcessor);
+                    scriptProcessor.connect(audioContext.destination);
+                    scriptProcessor.onaudioprocess = function() {
+                        const array = new Uint8Array(analyser.frequencyBinCount);
+                        analyser.getByteFrequencyData(array);
+                        const volume = array.reduce((a, b) => a + b) / array.length;
+                        console.log('Volume:', volume); // Debugging: log volume
+                        if (volume > 30 && !candleBlown) { // Further reduce the threshold
+                            blowOutCandle();
+                        }
+                    };
+                }) 
+                .catch(error => console.error("Microphone access denied", error));
+        }
+
+    </script>
+</body>
+
+</html>

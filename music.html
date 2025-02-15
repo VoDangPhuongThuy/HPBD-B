@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghibli Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&family=Ingrid+Darling&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100dvh;
+        background-image: url('images/music/background.png');
+        background-size: cover;
+        background-position: center;
+        overflow: hidden; /* Ẩn thanh cuộn */
+    }
+    .back-button {
+        position: fixed;
+        top: 10px; /* Khoảng cách từ trên xuống */
+        left: 10px; /* Khoảng cách từ trái sang */
+        font-size: 24px; /* Kích thước biểu tượng */
+        color: rgba(14, 1, 1, 0.8); /* Màu chữ nhạt */
+        text-decoration: none; /* Bỏ gạch chân */
+        transition: color 0.3s; /* Hiệu ứng chuyển đổi màu */
+    }
+    .item {
+        position: absolute; /* Đặt vị trí tuyệt đối cho các item */
+        background-color: transparent; /* Màu nền của item */
+        display: flex; /* Để căn giữa nội dung */
+        justify-content: center; /* Căn giữa theo chiều ngang */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        border-radius: 5px; /* Bo góc cho item */
+
+    }
+    h1, h2{
+        font-family: "Inclusive Sans", serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        color: #ffe6cd;
+    }
+@media (max-width: 768px) {
+    .hpbd{
+        width: 60%;
+        top: 0%;
+        right: 0%;
+    }
+    .playlist {
+        position: absolute;
+        width: 60%;
+        height: 80%;
+        top: 30%;
+        right: 4%;
+        display: flex;
+        flex-direction: column;
+        z-index: 3;
+    }
+    .playlist iframe {
+        border-radius: 10px;
+        width: 100%;
+        height: 15%;
+    }
+    .hth{
+        width: 50%;
+        bottom: 0%;
+        left: 0%;
+    }
+    .hth2, .hth3{
+        display: none;
+    }
+    .title {
+        top: 10%;
+        left: 2%;
+        font-size: 2.5rem;
+    }
+    .note {
+        top: 20%;
+        left: 2%;
+        font-size: 1rem;
+    }
+}
+@media (min-width: 769px) {
+    .hpbd{
+        width: 20%;
+        top:0%;
+        right: 0%;
+    }
+    .playlist {
+        position: absolute;
+        width: 30%;
+        height: 70%;
+        top: 35%;
+        left: 50%;
+        transform:  translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        z-index: 3;
+    }
+    .playlist iframe {
+        border-radius: 12px;
+        width: 100%;
+        height: 18%;
+    }
+    .hth{
+        width: 22%;
+        bottom: 0%;
+        left: 6%;
+    }
+    .hth2{
+        width: 22%;
+        bottom: 0%;
+        right: 15%;
+        z-index: 1;
+    }
+    .hth3{
+        width: 45%;
+        bottom: 0%;
+        right: 0%;
+        z-index: 2;
+    }
+    .title {
+        top: 5%;
+        left: 5%;
+        font-size: 4rem;
+    }
+    .note {
+        top: 20%;
+        left: 5%;
+        font-size: 1rem;
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="item title">SUNDAY ZONE</h1>
+        <h2 class="item note">MỘT GÓC NHẠC CỦA ANH HIEUTHUHAI</h2>
+        <img src="images/music/hpbd.png" class="item hpbd" alt="item-hpbd">
+        <img src="images/music/hth.png" class="item hth" alt="item-hth">
+        <img src="images/music/hth2.png" class="item hth2" alt="item-hth2">
+        <img src="images/music/hth3.png" class="item hth3" alt="item-hth3">
+        <div class="playlist">
+            <iframe src="https://open.spotify.com/embed/track/27PB8QWyeyiUugyvKXbwbZ?utm_source=generator" width:100% frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/1W5kZCi3DyAwUu1flTIHdZ?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/703hXvZHWV7n70keoWevgP?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/1jF6ctFxoebFqI4TFHssR6?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/2RmIUFM4UkaLWPf120tPRC?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-home"></i> <!-- Biểu tượng home -->
+        </a>
+    </div>
+</body>
+</html>
